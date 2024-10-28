@@ -1,0 +1,68 @@
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+        body {
+            background: url("{% static 'img/fondo.png' %}") no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="frame">
+            <div class="nav">
+                <ul class="links">
+                    <li class="signin-active"><a class="btn">Login</a></li>
+                    <li class="signup-inactive"><a class="btn">Olvidé Contraseña</a></li>
+                </ul>
+            </div>
+            <div ng-app ng-init="checked = false">
+                <form class="form-signin" action="{% url 'login' %}" method="post" name="form">
+                    {% csrf_token %}
+                    <label for="username">Usuario</label>
+                    <input class="form-styling" type="text" name="username" placeholder="" required/>
+
+                    <label for="password">Contraseña</label>
+                    <div class="password-container">
+                        <input class="form-styling password-input" type="password" id="password" name="password" placeholder="" required/>
+                        <span class="eye-icon" onclick="togglePassword()">👁️</span>
+                    </div>
+
+                    <input type="checkbox" id="checkbox"/>
+                    <label for="checkbox"><span class="ui"></span>Guardar Sesión?</label>
+
+                    <div class="btn-animate">
+                        <button type="submit" class="btn-signin">Ingresar</button>  <!-- Cambiado a botón -->
+                    </div>
+                </form>
+
+                {% if messages %}
+                    <div class="message-container">
+                        {% for message in messages %}
+                            <div class="success">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <div class="success" style="{% if messages %} display: block; {% else %} display: none; {% endif %}">
+                  <svg width="270" height="270" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" id="check">
+                      <path fill="#ffffff" d="M40.61,23.03L26.67,36.97L13.495,23.788c-1.146-1.147-1.359-2.936-0.504-4.314c3.894-6.28,11.169-10.243,19.283-9.348c9.258,1.021,16.694,8.542,17.622,17.81c1.232,12.295-8.683,22.607-20.849,22.042c-9.9-0.46-18.128-8.344-18.972-18.218c-0.292-3.416,0.276-6.673,1.51-9.578" />
+                  </svg>
+                  <div class="successtext">
+                      <p>Gracias por iniciar sesión. Redirigiendo...</p>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/login.js' %}"></script>
+</html>

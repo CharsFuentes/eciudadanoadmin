@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificación de Imputación de Cargos</title>
+    <style>
+        body {
+            width: 720px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            background: url("{% static 'img/fondosform.png' %}") no-repeat top center,
+                url("{% static 'img/repetitivoform.png' %}") repeat;
+            background-size: contain;
+        }
+
+        #notificationForm {
+            background-color: white; /* Fondo blanco con opacidad */
+            padding: 20px; /* Espaciado interno */
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+        }
+
+
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            text-align: center;
+            color: black;
+            font: bold;
+        }
+        
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: black;
+            font: bold;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <form id="notificationForm" method="POST" action="{% url 'notificacion' %}">
+        {% csrf_token %}
+        <div class="section">
+            <h2>NOTIFICACIÓN DE IMPUTACIÓN DE CARGOS N° ………</h2>
+            <p style="color: black; text-align: center; font: bold;">Aprobado con Ordenanza Municipal Nº 011-2020-A-MPM y Modificatorias</p>
+        </div>
+
+        <div class="section">
+            <h2>DATOS DEL INFRACTOR</h2>
+            <label>Tipo: 
+                <select name="tipo" required>
+                    <option value="DNI">DNI</option>
+                    <option value="RUC">RUC</option>
+                </select>
+            </label>
+            <label>Número de documento de Identidad:
+                <input type="text" name="numeroIdentidad" required>
+            </label>
+            <label>Fecha de Notificación:
+                <input type="date" name="fechaNotificacion" required>
+            </label>
+            <label>Hora:
+                <input type="time" name="horaNotificacion" required>
+            </label>
+            <label>Apellido Paterno/Materno/Nombres:
+                <input type="text" name="nombreCompleto" required>
+            </label>
+            <label>Domicilio:
+                <input type="text" name="domicilio" required>
+            </label>
+            <label>Distrito:
+                <input type="text" name="distrito" required>
+            </label>
+            <label>N°:
+                <input type="text" name="numeroDomicilio" required>
+            </label>
+            <label>Giro/ uso:
+                <input type="text" name="giroUso" required>
+            </label>
+        </div>
+
+        <div class="section">
+            <h2>DATOS DE LA INFRACCIÓN DETECTADA</h2>
+            <label>Código de la infracción:
+                <input type="text" name="codigoInfraccion" required>
+            </label>
+            <label>Fecha de detección:
+                <input type="date" name="fechaDeteccion" required>
+            </label>
+            <label>Hora de detección:
+                <input type="time" name="horaDeteccion" required>
+            </label>
+            <label>Denominación de la infracción:
+                <textarea name="denominacionInfraccion" required></textarea>
+            </label>
+            <label>Lugar de la infracción:
+                <textarea name="lugarInfraccion" required></textarea>
+            </label>
+            <label>Número de placa:
+                <input type="text" name="numeroPlaca" placeholder="Si no tiene, dejar en blanco">
+            </label>
+            <label>Marca:
+                <input type="text" name="marca" required>
+            </label>
+            <label>Modelo:
+                <input type="text" name="modelo" required>
+            </label>
+            <label>Color:
+                <input type="text" name="color" required>
+            </label>
+            <label>Número de acta de fiscalización:
+                <input type="text" name="numeroActa">
+            </label>
+            <label>Medida provisional:
+                <input type="text" name="medidaProvisional">
+            </label>
+            <label>Base legal específica:
+                <textarea name="baseLegalEspecifica"></textarea>
+            </label>
+            <label>Reseña de la infracción:
+                <textarea name="resenaInfraccion" required></textarea>
+            </label>
+        </div>
+        
+        <div class="section">
+            <h2>Datos de Inspector Municipal</h2>
+            <label>Nombres y Apellidos:
+                <input type="text" name="nombreInspector" required>
+            </label>
+            <label>DNI:
+                <input type="text" name="dniInspector" required>
+            </label>
+            <label>Firma del Inspector:
+                <input type="text" name="firmaInspector" required>
+            </label>
+        </div>
+
+        <div class="section">
+            <h2>Datos del infractor, representación o persona capaz</h2>
+            <label>Nombres y Apellidos:
+                <input type="text" name="nombreInfractor" required>
+            </label>
+            <label>DNI:
+                <input type="text" name="dniInfractor" required>
+            </label>
+            <label>Firma:
+                <input type="text" name="firmaInfractor" required>
+            </label>
+        </div>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

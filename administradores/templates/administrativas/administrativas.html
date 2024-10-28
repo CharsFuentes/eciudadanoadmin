@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificación de Imputación de Cargos</title>
+    <style>
+        body {
+            width: 720px; /* Ancho aproximado de A4 en píxeles */
+            height: auto; /* Alto aproximado de A4 en píxeles */
+            margin: auto;
+            padding: 20px;
+            position: relative;
+            background-color: #fff; /* Fondo blanco para el contenedor */
+        }
+    </style>
+</head>
+<body>
+    <div style="border: 1px solid black; font-size: 11.5px; width: auto; font-family: Arial, Helvetica, sans-serif;">
+        <div class="header" style="text-align: center; font-size: 1.5em; font-weight: bold;">NOTIFICACIÓN DE IMPUTACIÓN DE CARGOS N° ………</div>
+        <div class="sub-header" style="text-align: center; font-size: 1em; margin-bottom: 10px;">Aprobado con Ordenanza Municipal Nº 011-2020-A-MPM y Modificatorias</div>
+        
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th colspan="12" style="text-align: left; padding: 2px; border: 1px solid black;">DATOS DEL INFRACTOR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width: 8.33%; padding: 2px; border: 1px solid black;">Tipo</td>
+                    <td colspan="8" style="width: 41.67%; padding: 2px; border: 1px solid black;">Número de documento de Identidad</td>
+                    <td colspan="2" style="width: 25%; padding: 2px; border: 1px solid black;">Fecha de Notificación:</td>
+                    <td style="width: 8.33%; padding: 2px; border: 1px solid black;">Hora:</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black;">{{ datos.tipo }}</td>
+                    <td style="border: 1px solid black;" colspan="8">{{ datos.numeroIdentidad }}</td>
+                    <td style="border: 1px solid black;" colspan="2">{{ datos.fechaNotificacion }}</td>
+                    <td style="border: 1px solid black;">{{ datos.horaNotificacion }}</td>
+                </tr>
+                <tr>
+                    <td colspan="12" style="border: 1px solid black;">Apellido Paterno/Materno/Nombres o denominación Social/Razón social: <input type="text" value="{{ datos.nombreCompleto }}" style="border: none; width: 47%; padding: 0; margin: 0; outline: none;"></td>
+                </tr>
+                <tr>
+                    <td colspan="9" style="border: 1px solid black;">Domicilio: <input type="text" value="{{ datos.domicilio }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                    <td colspan="2" style="border: 1px solid black;">Distrito: <input type="text" value="{{ datos.distrito }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                    <td style="border: 1px solid black;">N°: <input type="text" value="{{ datos.numeroDomicilio }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                </tr>   
+                <tr>
+                    <td colspan="12" style="border: 1px solid black;">Giro/ uso: <input type="text" value="{{ datos.giroUso }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th colspan="11" style="text-align: left; padding: 2px; border: 1px solid black;">DATOS DE LA INFRACCIÓN DETECTADA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3" style="padding: 2px; border: 1px solid black;">Código de la infracción: <input type="text" value="{{ datos.codigoInfraccion }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                    <td colspan="4" style="padding: 2px; border: 1px solid black;">Fecha de detección: <input type="date" value="{{ datos.fechaDeteccion }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                    <td colspan="4" style="padding: 2px; border: 1px solid black;">Hora de detección: <input type="time" value="{{ datos.horaDeteccion }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                </tr>
+                <tr>
+                    <td style="padding: 2px; border: 1px solid black;">Denominación de la infracción:</td>
+                    <td colspan="10" style="padding: 2px; border: 1px solid black;">
+                        &nbsp;<textarea style="border: none; width: 99%; min-height: 20px; padding: 0; margin: 0; outline: none;">{{ datos.denominacionInfraccion }}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 2px; border: 1px solid black;">Lugar de la infracción:</td>
+                    <td colspan="10" style="padding: 2px; border: 1px solid black;">
+                        &nbsp;<textarea style="border: none; width: 99%; min-height: 20px; padding: 0; margin: 0; outline: none;">{{ datos.lugarInfraccion }}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="11" style="padding: 2px; border: 1px solid black;">
+                        Número de placa: <input type="text" value="{{ datos.numeroPlaca }}" style="border: none; width: 100px; padding: 0; margin: 0; outline: none;"> sin placa ( ) serie ( ) Marca: <input type="text" value="{{ datos.marca }}" style="border: none; width: 100px; padding: 0; margin: 0; outline: none;"> Modelo: <input type="text" value="{{ datos.modelo }}" style="border: none; width: 100px; padding: 0; margin: 0; outline: none;"> Color: <input type="text" value="{{ datos.color }}" style="border: none; width: 100px; padding: 0; margin: 0; outline: none;"> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" style="padding: 2px; border: 1px solid black;">Número de acta de fiscalización: <input type="text" value="{{ datos.numeroActa }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                    <td colspan="5" style="padding: 2px; border: 1px solid black;">Medida provisional: <input type="text" value="{{ datos.medidaProvisional }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                </tr>
+                <tr>
+                    <td colspan="11" style="padding: 2px; border: 1px solid black;">Base legal específica: <input type="text" value="{{ datos.baseLegalEspecifica }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                </tr>
+                <tr>
+                    <td rowspan="4" style="padding: 2px; border: 1px solid black;">Reseña de la infracción:</td>
+                    <td colspan="10" style="padding: 2px; border: 1px solid black;">&nbsp;<textarea style="border: none; width: 99%; min-height: 20px; padding: 0; margin: 0; outline: none;">{{ datos.resenaInfraccion }}</textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="10" style="padding: 2px; border: 1px solid black;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="10" style="padding: 2px; border: 1px solid black;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="10" style="padding: 2px; border: 1px solid black;">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th colspan="4" style="text-align: center; padding: 2px; border: 1px solid black;">Datos de Inspector Municipal</th>
+                    <th colspan="4" style="border: 1px solid black;"></th>
+                    <th colspan="4" style="text-align: center; padding: 2px; border: 1px solid black;">Datos del infractor, representación o persona capaz</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="4" style="padding: 2px; border: 1px solid black;">Nombres y Apellidos: <input type="text" value="{{ datos.nombreInspector }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                    <td colspan="4" style="border: 1px solid black;"></td>
+                    <td colspan="4" style="padding: 2px; border: 1px solid black;">Nombres y Apellidos: <input type="text" value="{{ datos.nombreInfractor }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="padding: 2px; border: 1px solid black;">DNI: <input type="text" value="{{ datos.dniInspector }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                    <td colspan="4" style="border: 1px solid black;"></td>
+                    <td colspan="4" style="padding: 2px; border: 1px solid black;">DNI: <input type="text" value="{{ datos.dniInfractor }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="padding: 2px; border: 1px solid black;">Firma: <input type="text" value="{{ datos.firmaInspector }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                    <td colspan="4" style="padding: 2px; border: 1px solid black; text-align: center;">Responsable (Sub Gerente) del órgano instructivo</td>
+                    <td colspan="2" style="padding: 2px; border: 1px solid black;">Firma: <input type="text" value="{{ datos.firmaInfractor }}" style="border: none; width: 100%; padding: 0; margin: 0; outline: none;"></td>
+                    <td colspan="2" style="padding: 2px; border: 1px solid black;">Vínculo:</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
