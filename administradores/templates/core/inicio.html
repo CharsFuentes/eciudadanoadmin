@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ocupa toda la altura de la ventana */
+            margin: 0;
+            background: linear-gradient(to bottom, #001f3d, #0c6eb4); /* Gradiente azul marino */
+            font-family: Arial, sans-serif;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+            gap: 20px; /* Espacio entre las columnas */
+            width: 80%; /* Ancho del contenedor */
+            max-width: 800px; /* Máximo ancho para pantallas grandes */
+        }
+        .card {
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            padding: 20px;
+            text-align: center; /* Centrar texto */
+            font-size: 1.5em; /* Tamaño de texto más grande */
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <a href="{% url 'formulario' %}" class="card" style="background-color: white;">
+            NOTIFICACIÓN DE IMPUTACIÓN DE CARGOS
+        </a>
+        <a href="#" class="card" style="background-color: lightblue;">
+            ORDEN DE APLICACIÓN DE MEDIDA PROVISIONAL
+        </a>
+        <a href="#" class="card" style="background-color: skyblue;">
+            Opción 3
+        </a>
+    </div>    
+</body>
+</html>

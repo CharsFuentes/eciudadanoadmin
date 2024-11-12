@@ -74,3 +74,18 @@ def notificacion_view(request):
         return render(request, 'administrativas/administrativas.html', {'datos': datos})
     
     return render(request, 'administrativas/administrativas.html')
+
+def notificacion2_view(request):
+    return render(request, 'administrativas/administrativas2.html')
+
+def inicio(request):
+    return render(request, 'core/inicio.html' )
+
+def formulario2_view(request):
+    if request.method == 'POST':
+        data = request.POST
+        # Puedes manejar el almacenamiento de datos aquí (como en una base de datos)
+        # Para este ejemplo, simplemente los pasamos a la siguiente vista.
+        return render(request, 'administrativas/administrativas2.html', {'data': data})
+
+    return render(request, 'administrativas/administrativasform2.html')

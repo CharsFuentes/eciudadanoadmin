@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden de Aplicación de Medida Provisional</title>
+    <style>
+        body {
+            width: 720px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            background: url("{% static 'img/fondosform2.png' %}") no-repeat top center,
+                        url("{% static 'img/repetitivoform2.png' %}") repeat;
+            background-size: contain;
+        }
+
+        #notificationForm {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            text-align: center;
+            color: black;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: black;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <form id="notificationForm" method="POST" action="{% url 'notificacion2' %}">
+        {% csrf_token %}
+        <div class="section">
+            <h2>ORDEN DE APLICACIÓN DE MEDIDA PROVISIONAL Nº ………</h2>
+            <p style="color: black; text-align: center; font-weight: bold;">ORDENANZA MUNICIPAL Nº 011-2020-A-MPM</p>
+        </div>
+
+        <div class="section">
+            <h2>I. DATOS DEL INFRACTOR</h2>
+            <label>Apellidos Paterno / Materno / Nombres o denominación social o razón social:
+                <input type="text" name="nombreInfractor" required>
+            </label>
+            <label>Documento de identidad / RUC:
+                <input type="text" name="documentoIdentidad" required>
+            </label>
+            <label>Domicilio:
+                <input type="text" name="domicilioInfractor" required>
+            </label>
+        </div>
+
+        <div class="section">
+            <h2>II. DESCRIPCIÓN DEL PROCEDIMIENTO</h2>
+            <label>Inicio de la medida provisional:
+                <input type="text" name="inicioMedida" required>
+            </label>
+            <label>Lugar:
+                <input type="text" name="lugarMedida" required>
+            </label>
+            <label>Fecha:
+                <input type="date" name="fechaMedida" required>
+            </label>
+        </div>
+
+        <div class="section">
+            <h2>III. RESUMEN DE LOS HECHOS</h2>
+            <label>Resumen de los hechos:
+                <textarea name="resumenHechos" required></textarea>
+            </label>
+        </div>
+
+        <button type="submit">Generar Orden</button>
+    </form>
+</body>
+</html>
