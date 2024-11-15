@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acta de Fiscalización</title>
+    <style>
+        body {
+            width: 720px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+            background: url("{% static 'img/fondosform2.png' %}") no-repeat top center,
+                        url("{% static 'img/repetitivoform2.png' %}") repeat;
+            background-size: contain;
+        }
+
+        #actaForm {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            text-align: center;
+            color: black;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: black;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .row-signature {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .signature-box {
+            width: 48%;
+            padding: 10px;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        th {
+            width: 40%;
+        }
+
+    </style>
+</head>
+<body>
+    <form id="actaForm" method="POST" action="{% url 'formulario3' %}">
+        {% csrf_token %}
+
+        <!-- Encabezado del acta -->
+        <div class="section">
+            <h2>ACTA DE FISCALIZACIÓN N° ………</h2>
+            <p style="color: black; text-align: center; font-weight: bold;">ORDENANZA MUNICIPAL N° 011-2020-A-MPM</p>
+        </div>
+
+        <!-- Sección de datos del administrado -->
+        <div class="section">
+            <h2>DATOS DEL ADMINISTRADO</h2>
+            <label>Nombre o Razón Social:
+                <input type="text" name="nombreAdmin" required>
+            </label>
+            <label>Domicilio:
+                <input type="text" name="domicilioAdmin" required>
+            </label>
+            <label>Documento de identidad / RUC:
+                <input type="text" name="documentoAdmin" required>
+            </label>
+        </div>
+
+        <!-- Sección de descripción del procedimiento -->
+        <div class="section">
+            <h2>CONSTATANDO</h2>
+            <label>Descripción de la constatación:
+                <textarea name="constatacion" required></textarea>
+            </label>
+        </div>
+
+        <!-- Sección de resumen de los alegatos -->
+        <div class="section">
+            <h2>RESUMEN DE LOS ALEGATOS DEL ADMINISTRADO</h2>
+            <label>Resumen de los alegatos:
+                <textarea name="alegatosAdmin" required></textarea>
+            </label>
+        </div>
+
+        <!-- Sección de firma -->
+        <div class="section">
+            <h2>FIRMA DE LAS PARTES</h2>
+            <div class="row-signature">
+                <!-- Firma del conductor o propietario -->
+                <div class="signature-box">
+                    <table>
+                        <tr>
+                            <th>Nombre:</th>
+                            <td><input type="text" name="nombreConductor" required></td>
+                        </tr>
+                        <tr>
+                            <th>DNI/RUC/Otros:</th>
+                            <td><input type="text" name="dniConductor" required></td>
+                        </tr>
+                        <tr>
+                            <th>Vínculo:</th>
+                            <td><input type="text" name="vinculoConductor" required></td>
+                        </tr>
+                    </table>
+                </div>
+        
+                <!-- Firma del inspector municipal -->
+                <div class="signature-box">
+                    <table>
+                        <tr>
+                            <th>Nombre:</th>
+                            <td><input type="text" name="nombreInspector" required></td>
+                        </tr>
+                        <tr>
+                            <th>DNI/RUC/Otros:</th>
+                            <td><input type="text" name="dniInspector" required></td>
+                        </tr>
+                        <tr>
+                            <th>N° Credencial:</th>
+                            <td><input type="text" name="credencialInspector" required></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Botón de envío -->
+        <button type="submit">Generar Acta</button>
+    </form>
+</body>
+</html>

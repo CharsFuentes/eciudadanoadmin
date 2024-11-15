@@ -47,7 +47,7 @@
 </head>
 <body>
     <div>
-        <h2>ORDEN DE APLICACIÓN DE MEDIDA PROVISIONAL Nº ..................</h2>
+        <h2>ORDEN DE APLICACIÓN DE MEDIDA PROVISIONAL Nº {{ orden.numero }}</h2>
         <p class="subtitle" style="font-size: 14px;">ORDENANZA MUNICIPAL Nº 011-2020-A-MPM</p>
         <table>
             <tr>
@@ -57,43 +57,40 @@
                 <td colspan="2">Apellidos Paterno / Materno / Nombres o denominación social o razón social:</td>
             </tr>
             <tr>
-                <td colspan="2">
-                </td>
+                <td colspan="2">{{ datos.nombreInfractor }}</td>
             </tr>
             <tr>
-                <td>Documentos de identidad / RUC:</td>
+                <td>Documento de identidad / RUC:</td>
+                <td>{{ datos.documentoIdentidad }}</td>
+            </tr>
+            <tr>
                 <td>Domicilio:</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
+                <td>{{ datos.domicilioInfractor }}</td>
             </tr>
             <tr>
                 <th colspan="2">II. DESCRIPCIÓN DEL PROCEDIMIENTO</th>
             </tr>
             <tr>
-                <td style="width: 50%;">
-                </td>
-                <td>
-                    <p>Inicio de la medida provisional:</p>
-                    <p>Lugar:</p>
-                    <p>Fecha:</p>
-                </td>
+                <td style="width: 50%;">Inicio de la medida provisional:</td>
+                <td>{{ datos.inicioMedida }}</td>
+            </tr>
+            <tr>
+                <td>Lugar:</td>
+                <td>{{ datos.lugarMedida }}</td>
+            </tr>
+            <tr>
+                <td>Fecha:</td>
+                <td>{{ datos.fechaMedida }}</td>
             </tr>
             <tr>
                 <th colspan="2">III. RESUMEN DE LOS HECHOS</th>
             </tr>
             <tr>
-                <td colspan="2">
-                </td>
+                <td colspan="2">{{ datos.resumenHechos }}</td>
             </tr>
             <tr>
                 <td colspan="2">
                     <p style="text-align: justify;">Que de conformidad con el artículo 46 y siguientes de la Ley Orgánica de Municipalidades N° 27972, las normas municipales son de carácter obligatorio y su incumplimiento acarrea las sanciones correspondientes, sin perjuicio de promover las acciones judiciales sobre las responsabilidades que hubiera lugar. Que, el Texto Único Ordenado de la Ley N° 27444, Ley del Procedimiento Administrativo General establece el marco jurídico de los actos administrativos, que tiene concordancia con las disposiciones establecidas en el Reglamento Municipal de Aplicación de Sanciones Administrativas. Asimismo, de acuerdo con el artículo 28 del citado reglamento, se establece que la autoridad que instruye el procedimiento podrá disponer la adopción de medidas de carácter provisional que aseguren la eficacia de la resolución final que pudiera recaer.</p>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
                 </td>
             </tr>
         </table>

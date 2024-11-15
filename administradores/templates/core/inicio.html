@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú</title>
     <style>
+        /* Estilo general para el body */
         body {
             display: flex;
             justify-content: center;
@@ -15,32 +16,91 @@
             font-family: Arial, sans-serif;
         }
 
-        .grid {
+        /* Contenedor de la grid */
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
-            gap: 20px; /* Espacio entre las columnas */
-            width: 80%; /* Ancho del contenedor */
-            max-width: 800px; /* Máximo ancho para pantallas grandes */
-        }
-        .card {
-            border-radius: 8px; /* Bordes redondeados */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            grid-template-columns: repeat(2, 1fr);  /* 2 columnas */
+            grid-template-rows: repeat(2, auto);   /* 2 filas automáticas */
+            gap: 15px;  /* Espacio entre los elementos */
+            justify-items: center;  /* Centra los elementos horizontalmente */
+            align-items: center;    /* Centra los elementos verticalmente */
+            width: 80%;  /* El contenedor de la grid ocupa el 80% del ancho */
+            max-width: 600px;  /* Evita que la grid se haga demasiado ancha en pantallas grandes */
+            height: auto;
             padding: 20px;
-            text-align: center; /* Centrar texto */
-            font-size: 1.5em; /* Tamaño de texto más grande */
+            box-sizing: border-box; /* Asegura que el padding no se salga del contenedor */
         }
+
+        /* Estilo para cada tarjeta */
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 180px;  /* Ancho fijo para las tarjetas */
+            height: 120px; /* Altura fija para las tarjetas */
+            text-align: center;
+            font-weight: bold;
+            border-radius: 10px;
+            color: black;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  /* Agrega sombra a las tarjetas */
+            transition: transform 0.3s ease;  /* Efecto de transición para hover */
+        }
+
+        /* Efecto al pasar el ratón por encima */
+        .card:hover {
+            transform: translateY(-5px);  /* Efecto de desplazamiento al hacer hover */
+        }
+
+        /* Colores personalizados para cada tarjeta */
+        .card:nth-child(1) {
+            background-color: white;
+        }
+        .card:nth-child(2) {
+            background-color: lightblue;
+        }
+        .card:nth-child(3),
+        .card:nth-child(4) {
+            background-color: skyblue;
+        }
+
+        /* Responsividad para pantallas más pequeñas (móviles) */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;  /* 1 columna en pantallas pequeñas */
+                width: 90%;  /* La grid ocupa el 90% del ancho de la pantalla */
+                max-width: none;  /* Se elimina el límite de 600px */
+            }
+
+            .card {
+                width: 100%;  /* Las tarjetas ocupan el 100% del ancho disponible */
+                height: 100px; /* Ajustamos la altura para que no se vean tan grandes */
+            }
+        }
+
+        /* Responsividad para pantallas muy pequeñas (móviles en modo retrato) */
+        @media (max-width: 480px) {
+            .card {
+                font-size: 14px;  /* Reducimos el tamaño de la fuente para móviles más pequeños */
+                height: 90px;  /* Ajustamos aún más la altura para pantallas pequeñas */
+            }
+        }
+
     </style>
 </head>
 <body>
-    <div class="grid">
-        <a href="{% url 'formulario' %}" class="card" style="background-color: white;">
+    <div class="grid-container">
+        <a href="{% url 'formulario' %}" class="card">
             NOTIFICACIÓN DE IMPUTACIÓN DE CARGOS
         </a>
-        <a href="#" class="card" style="background-color: lightblue;">
+        <a href="{% url 'formulario2' %}" class="card">
             ORDEN DE APLICACIÓN DE MEDIDA PROVISIONAL
         </a>
-        <a href="#" class="card" style="background-color: skyblue;">
-            Opción 3
+        <a href="{% url 'formulario3' %}" class="card">
+            ACTA DE FISCALIZACIÓN
+        </a>
+        <a href="{% url 'formulario3' %}" class="card">
+            ACTA DE FISCALIZACIÓN
         </a>
     </div>    
 </body>

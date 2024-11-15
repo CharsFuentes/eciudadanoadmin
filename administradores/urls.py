@@ -8,5 +8,7 @@ urlpatterns = [
     path('notificacion/', views.notificacion_view, name='notificacion'),
     path('login/', views.login, name='login'),
     path('notificacion2/', views.notificacion2_view, name='notificacion2'),
-    path('inicio/', views.inicio, name='inicio')
+    path('inicio/', views.inicio, name='inicio'),
+    path('formulario3/', views.formulario3_view, name='formulario3'),
+    path('notificacion3/', views.notificacion3_view, name='notificacion3')
     ]

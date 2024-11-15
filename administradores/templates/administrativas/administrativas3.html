@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acta de Fiscalización</title>
+    <style>
+        body {
+            width: 720px; /* Ancho aproximado de A4 en píxeles */
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 15px;
+            text-decoration: underline;
+            color: black;
+        }
+
+        p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: black;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        td, th {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .signature-section {
+            margin-top: 20px;
+        }
+
+        .row-signature {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .row-signature > div {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .datos-table {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .content-left,
+        .content-right {
+            width: 48%;
+            vertical-align: top;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <p>ACTA DE FISCALIZACIÓN N° ………</p>
+            <p>ORDENANZA MUNICIPAL N° 011-2020-A-MPM</p>
+        </div>
+        
+        <p>En el distrito de Iquitos, siendo las <strong>{{ datos.hora }}</strong> horas del día <strong>{{ datos.dia }}</strong> de <strong>{{ datos.mes }}</strong> del año <strong>{{ datos.anio }}</strong>, el inspector municipal suscrito al órgano instructor, se hace presente en el {{ datos.lugarMedida }}.</p>
+        <p>{{ datos.descripcionLugar }}</p>
+        <p>{{ datos.descripcionHechos }}</p>
+
+        <div class="section-title">DATOS DEL ADMINISTRADO:</div>
+        <table class="datos-table">
+            <tr>
+                <td class="content-left">
+                    <label for="nombreAdmin">Nombres y apellidos:</label>
+                    <input type="text" id="nombreAdmin" name="nombreAdmin" value="{{ datos.nombreAdmin }}" readonly>
+
+                    <label for="razonSocial">Razón social:</label>
+                    <input type="text" id="razonSocial" name="razonSocial" value="{{ datos.razonSocial }}" readonly>
+                </td>
+                <td class="content-right">
+                    <label for="domicilioAdmin">Domicilio:</label>
+                    <input type="text" id="domicilioAdmin" name="domicilioAdmin" value="{{ datos.domicilioAdmin }}" readonly>
+
+                    <label for="documentoAdmin">Documento de identidad / RUC N°:</label>
+                    <input type="text" id="documentoAdmin" name="documentoAdmin" value="{{ datos.documentoAdmin }}" readonly>
+                </td>
+            </tr>
+        </table>
+
+        <div class="section-title">CONSTATANDO:</div>
+        <p>{{ datos.constatacion }}</p>
+
+        <div class="section-title">RESUMEN DE LOS ALEGATOS DEL ADMINISTRADO:</div>
+        <p>{{ datos.alegatosAdmin }}</p>
+
+        <p>Se procede al cierre de la presente acta, siendo las <strong>{{ datos.horaCierre }}</strong> horas del día <strong>{{ datos.diaCierre }}</strong> de <strong>{{ datos.mesCierre }}</strong> del año <strong>{{ datos.anioCierre }}</strong>, firmar las partes en señal de conformidad.</p>
+
+        <div class="signature-section">
+            <div class="row-signature">
+                <div>
+                    <table style="width: 100%; table-layout: fixed;">
+                        <tr>
+                            <th style="width: 40%;">Firma del conductor o propietario:</th>
+                            <td>{{ datos.firmaConductor }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre:</th>
+                            <td>{{ datos.nombreConductor }}</td>
+                        </tr>
+                        <tr>
+                            <th>DNI/RUC/Otros:</th>
+                            <td>{{ datos.dniConductor }}</td>
+                        </tr>
+                        <tr>
+                            <th>Vínculo:</th>
+                            <td>{{ datos.vinculoConductor }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <table style="width: 100%; table-layout: fixed;">
+                        <tr>
+                            <th style="width: 40%;">Firma del inspector municipal:</th>
+                            <td>{{ datos.firmaInspector }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre:</th>
+                            <td>{{ datos.nombreInspector }}</td>
+                        </tr>
+                        <tr>
+                            <th>DNI/RUC/Otros:</th>
+                            <td>{{ datos.dniInspector }}</td>
+                        </tr>
+                        <tr>
+                            <th>N° Credencial:</th>
+                            <td>{{ datos.numeroCredencial }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
